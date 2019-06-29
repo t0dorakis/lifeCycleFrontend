@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+.LiveData {
+  background: #000008;
+  width: 100%;
+  height: 100%;
+  &__name {
+    color: aliceblue;
+   }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
