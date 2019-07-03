@@ -1,14 +1,105 @@
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {List}            - text-shadow list
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {Style}           - text-shadow
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+
 .App {
   text-align: center;
 }
+.scene-wrapper {
+  background: #000008;
+}
 
-.LiveData {
+.liveData {
   background: #000008;
   width: 100%;
   height: 100%;
-  &__name {
-    color: aliceblue;
+  &__table {
+    color: red;
+    position: fixed;
+    left: 300px;
+    top:120px;
+    td {
+      border-bottom: solid red 1px;
+      min-width: 70px;
+      text-align: left;
+    }
+    &__key {
+      border: none!important;
+      text-transform: uppercase;
+
+    }
+  };
+  &__name,  &__name__under{
+    animation: flickerAnimation 3s infinite;
+    position: fixed;
+
+    left: 120px;
+    top:120px;
+    z-index: 0;
+
+
+    font-size: 100px;
+    @include stroke(1, red);
+    transform: rotate3d(-0.1,0.3,0,60deg);
+    //color: rgba(0,0,0,0.5);
+    &__under {
+      z-index: 10;
+      //text-shadow: 2px 2px 40px  rgba(255, 0, 0, 0.5);
+      left: 123px;
+      top: 118px;
+    }
+    &::before {
+      position: absolute;
+      top: 106px;
+      z-index: 1000000;
+      left: 0;
+      content: '';
+      color: red;
+      background: red;
+      width: 100%;
+      height: 1px;
+    }
+    &::after {
+      position: absolute;
+      top: 7px;
+      z-index: 999;
+      left: 0;
+      content: '';
+      color: red;
+      background: red;
+      width: 100%;
+      height: 1px;
+    }
    }
+
+}
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  10%  { opacity:0; }
+  14%  { opacity:1; }
+  18%  { opacity:0; }
+  20%  { opacity:1; }
+  30% { opacity:1; }
+  100% { opacity:1; }
 }
 
 @keyframes App-logo-spin {
