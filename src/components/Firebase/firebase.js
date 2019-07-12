@@ -19,6 +19,9 @@ class Firebase {
         this.db = app.firestore();
 
         this.creature = () => this.db.collection('creature');
+        this.state = () => this.db.collection('state');
+        this.heardSentences = () => this.db.collection('heardSentences');
+        this.spokenSentences = () => this.db.collection('spokenSentences');
     }
 }
 

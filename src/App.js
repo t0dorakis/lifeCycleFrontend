@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './style.scss';
 import LiveData from './components/LiveData'
 import PageWithScene from "./components/Babylon";
