@@ -13,26 +13,6 @@ const LiveData = (props) => {
     const lastHeardSentence = (payload) =>  dispatch({type: 'lastHeardSentence', payload: payload})
     const getAlive = (payload) =>  dispatch({type: 'getAlive', payload: payload})
 
-
-
-        // const unsubscribeCreature = props.firebase.creature()
-        //     .orderBy("created", "desc")
-        //     .limit(1)
-        //     .onSnapshot((snapshot) => {
-        //         snapshot.docChanges().forEach(function(change) {
-        //             if  (change.type === "added") {
-        //                 newCreature(change.doc.data())
-        //             }
-        //             if  (change.type === "created") {
-        //                 newCreature(change.doc.data())
-        //             }
-        //             if (change.type === "modified") {
-        //                 console.log("Modified creature: ", change.doc.data());
-        //                 newCreature(change.doc.data())
-        //             }
-        //         });
-        // });
-
     useEffect(() => {
         console.log("componentDidMount");
 
@@ -69,13 +49,6 @@ const LiveData = (props) => {
         };
     }, []); // empty-array means don't watch for any updates
 
-    // props.firebase.state().doc("currentCreature")
-    //     .onSnapshot((doc) => {
-    //         props.firebase.heardSentences().doc(state.creature.id).get()
-    //         console.log("Current data: ", doc.data());
-    //     });
-
-  // props.firebase.heardSentences().doc(state.creature.id)
 
     const parseDate = (time) => moment.unix(time).format("dddd, MMMM Do YYYY, h:mm:ss a");
 
@@ -97,7 +70,7 @@ const LiveData = (props) => {
     return (
             <div className="liveData">
                 <div className="row">
-                    {state.alive === true &&
+                    {state.alive === false &&
                     <div>
                         <span className="liveData__name">Life Cycle</span>
                         <span className="liveData__name__under">Life Cycle</span>
@@ -158,7 +131,6 @@ const LiveData = (props) => {
                     </div>
                 </div>
 
-                {/*<div ref={this.updatePixiCnt} />*/}
             </div>
         );
 }
